@@ -1,12 +1,12 @@
 package ru.sbt.mipt.oop;
 
-public class Light {
+public class Light extends Devise{
     private boolean isOn;
     private final String id;
 
-    public Light(String id, boolean isOn) {
+    public Light(String id, boolean someAct) {
+        super(id, someAct);
         this.id = id;
-        this.isOn = isOn;
     }
 
     public boolean isOn() {
