@@ -12,9 +12,10 @@ public class Application {
 
     public static void main(String... args) throws IOException {
         // считываем состояние дома из файла
-        SmartHome smartHome = ReadFromFile.read();
+        Reader read = new ReadFromFile();
+        SmartHome smartHome = read.read();
         // начинаем цикл обработки событий
-        SensorEvent event = SensorEvent.getNextSensorEvent();
+        SensorEvent event = NewEventGetter.getNextSensorEvent();
         EventProcessor.eventProcessing(event, smartHome);
     }
 }
