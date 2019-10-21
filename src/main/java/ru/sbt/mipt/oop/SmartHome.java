@@ -3,8 +3,8 @@ package ru.sbt.mipt.oop;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome {
-    Collection<Room> rooms;
+public class SmartHome extends PartofTheHouse implements ComponentOfTheCollection{
+    private Collection<Room> rooms;
 
     public SmartHome() {
         rooms = new ArrayList<>();
@@ -20,5 +20,12 @@ public class SmartHome {
 
     public Collection<Room> getRooms() {
         return rooms;
+    }
+
+    @Override
+    public void execute(SensorEvent event, PartofTheHouse smartHome) {
+        for (Room room: getRooms()) {
+            room.execute(event, this);
+        }
     }
 }

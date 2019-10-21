@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Devise {
+public class Devise implements ComponentOfTheCollection {
         private boolean someAct;
         private final String id;
 
@@ -20,4 +20,11 @@ public class Devise {
         public void setOn(boolean on) {
             someAct = on;
         }
+
+    @Override
+    public void execute(SensorEvent event) {
+        if (this.id.equals(event.getObjectId())) {
+
+        }
+    }
 }
