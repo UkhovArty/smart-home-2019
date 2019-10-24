@@ -1,7 +1,5 @@
 package ru.sbt.mipt.oop.CollectionSmarthome;
 
-import ru.sbt.mipt.oop.*;
-import ru.sbt.mipt.oop.CollectionSmarthome.ComponentOfTheCollection;
 import ru.sbt.mipt.oop.EventProcessing.SensorEvent;
 import ru.sbt.mipt.oop.SmartHomeScenarios.SmartHomeScenarioProcessor;
 import ru.sbt.mipt.oop.SmartHomeScenarios.SmartHomeScenarioTypes;

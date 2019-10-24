@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.CollectionSmarthome;
 
 public class PartofTheHouse {
     public String name;
