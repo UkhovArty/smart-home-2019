@@ -1,4 +1,7 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.CollectionSmarthome;
+
+import ru.sbt.mipt.oop.EventProcessing.SensorEvent;
+import ru.sbt.mipt.oop.PartofTheHouse;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +28,7 @@ public class SmartHome extends PartofTheHouse implements ComponentOfTheCollectio
     @Override
     public void execute(SensorEvent event, PartofTheHouse smartHome) {
         for (Room room: getRooms()) {
-            room.execute(event, this);
+            room.execute(event, room);
         }
     }
 }

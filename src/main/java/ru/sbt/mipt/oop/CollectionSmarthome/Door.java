@@ -1,4 +1,10 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.CollectionSmarthome;
+
+import ru.sbt.mipt.oop.*;
+import ru.sbt.mipt.oop.CollectionSmarthome.ComponentOfTheCollection;
+import ru.sbt.mipt.oop.EventProcessing.SensorEvent;
+import ru.sbt.mipt.oop.SmartHomeScenarios.SmartHomeScenarioProcessor;
+import ru.sbt.mipt.oop.SmartHomeScenarios.SmartHomeScenarioTypes;
 
 public class Door implements ComponentOfTheCollection {
     private final String id;
@@ -35,7 +41,7 @@ public class Door implements ComponentOfTheCollection {
                     // в этом случае мы хотим автоматически выключить свет во всем доме (это же умный дом!)
                     if (room.getName().equals("hall")) {
                         SmartHomeScenarioTypes type = SmartHomeScenarioTypes.HALL_DOOR_WAS_CLOSED;
-                        SmartHomeScenarioProcessor.processScenario(smartHome, type);
+                        SmartHomeScenarioProcessor.processScenario(event.getSmartHome(), type);
                     }
                     break;
             }

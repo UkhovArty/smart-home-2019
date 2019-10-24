@@ -1,6 +1,11 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.SmartHomeScenarios;
 
-import static ru.sbt.mipt.oop.SmartHomeScenarioTypes.HALL_DOOR_WAS_CLOSED;
+import ru.sbt.mipt.oop.*;
+import ru.sbt.mipt.oop.CollectionSmarthome.Room;
+import ru.sbt.mipt.oop.CollectionSmarthome.SmartHome;
+import ru.sbt.mipt.oop.CollectionSmarthome.Light;
+
+import static ru.sbt.mipt.oop.SmartHomeScenarios.SmartHomeScenarioTypes.HALL_DOOR_WAS_CLOSED;
 
 public class AllLightsSwitcher {
     public static void allLightsOff(SmartHome smartHome, SmartHomeScenarioTypes type) {

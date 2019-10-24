@@ -1,4 +1,8 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.CollectionSmarthome;
+
+import ru.sbt.mipt.oop.CollectionSmarthome.ComponentOfTheCollection;
+import ru.sbt.mipt.oop.PartofTheHouse;
+import ru.sbt.mipt.oop.EventProcessing.SensorEvent;
 
 public class Light implements ComponentOfTheCollection {
     private boolean isOn;
