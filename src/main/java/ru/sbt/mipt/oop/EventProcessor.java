@@ -1,13 +1,17 @@
 package ru.sbt.mipt.oop;
 
-import static ru.sbt.mipt.oop.SensorEventType.*;
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+
+import java.util.List;
 
 public class EventProcessor {
-    static void eventProcessing(SensorEvent event, SmartHome smartHome) {
-        while (event != null) {
-            System.out.println("Got event: " + event);
-            smartHome.execute(event, smartHome);
-            event = NewEventGetter.getNextSensorEvent();
+    private final List<EventHandler> handlers;
+    public EventProcessor (List<EventHandler> handlers) {
+        this.handlers = handlers;
+    }
+    public void processEvent(SensorEvent event) {
+        for (EventHandler handler: handlers) {
+            handler.handleEvent(event);
         }
     }
 }

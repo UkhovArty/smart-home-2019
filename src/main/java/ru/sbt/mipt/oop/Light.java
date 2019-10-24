@@ -1,16 +1,29 @@
 package ru.sbt.mipt.oop;
 
-public class Light implements ComponentOfTheCollection {
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+
+public class Light implements Actionable {
     private boolean isOn;
     private final String id;
+    private final String type = "light";
+    private final String roomName;
 
-    public Light(String id, boolean someAct) {
-        this.isOn = someAct;
+    public Light(String id, boolean someAct, String roomName) {
+        this.isOn = isOn();
         this.id = id;
+        this.roomName = roomName;
+    }
+
+    public String getRoomName() {
+        return roomName;
     }
 
     public boolean isOn() {
         return isOn;
+    }
+
+    public String getType() {
+        return "light";
     }
 
     public String getId() {
@@ -22,18 +35,7 @@ public class Light implements ComponentOfTheCollection {
     }
 
     @Override
-    public void execute(SensorEvent event, PartofTheHouse room) {
-        if (this.getId().equals(event.getObjectId())) {
-            switch (event.getType()) {
-                case LIGHT_ON:
-                    this.setOn(true);
-                    System.out.println("Light " + this.getId() + " in room " + room.getName() + " was turned on.");
-                    break;
-                case LIGHT_OFF:
-                    this.setOn(false);
-                    System.out.println("Light " + this.getId() + " in room " + room.getName() + " was turned off.");
-                    break;
-            }
-        }
+    public void execute(Action action) {
+        action.execute(this);
     }
 }

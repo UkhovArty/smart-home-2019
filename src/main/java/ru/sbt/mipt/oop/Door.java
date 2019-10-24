@@ -1,17 +1,27 @@
 package ru.sbt.mipt.oop;
 
-public class Door implements ComponentOfTheCollection {
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+
+public class Door implements Actionable {
     private final String id;
     private boolean isOpen;
+    private final String type = "door";
+    private final String roomName;
 
-    public Door(boolean someAct, String id) {
+    public Door(boolean isOpen, String id, String roomName) {
+        this.isOpen = isOpen;
         this.id = id;
-        this.isOpen = someAct;
+        this.roomName = roomName;
     }
 
-    public boolean isOpen() {
-        return isOpen;
+    public String getRoomName() {
+        return roomName;
     }
+
+    public String getType() {
+        return "door";
+    }
+
     public String getId() {
         return id;
     }
@@ -21,24 +31,7 @@ public class Door implements ComponentOfTheCollection {
     }
 
     @Override
-    public void execute(SensorEvent event, PartofTheHouse room) {
-        if (this.getId().equals(event.getObjectId())) {
-            switch (event.getType()) {
-                case DOOR_OPEN:
-                    this.setOpen(true);
-                    System.out.println("Door " + this.getId() + " in room " + room.getName() + " was opened.");
-                    break;
-                case DOOR_CLOSED:
-                    this.setOpen(false);
-                    System.out.println("Door " + this.getId() + " in room " + room.getName() + " was closed.");
-                    // если мы получили событие о закрытии двери в холле - это значит, что была закрыта входная дверь.
-                    // в этом случае мы хотим автоматически выключить свет во всем доме (это же умный дом!)
-                    if (room.getName().equals("hall")) {
-                        SmartHomeScenarioTypes type = SmartHomeScenarioTypes.HALL_DOOR_WAS_CLOSED;
-                        SmartHomeScenarioProcessor.processScenario(smartHome, type);
-                    }
-                    break;
-            }
-        }
+    public void execute(Action action) {
+        action.execute(this);
     }
 }

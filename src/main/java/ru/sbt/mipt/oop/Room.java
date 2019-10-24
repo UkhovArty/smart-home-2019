@@ -1,24 +1,26 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+
 import java.util.Collection;
 
-public class Room extends PartofTheHouse implements ComponentOfTheCollection {
-    private Collection<Light> lights;
+public class Room implements Actionable {
     private Collection<Door> doors;
+    private Collection<Light> lights;
     private String name;
 
     public Room(Collection<Light> lights, Collection<Door> doors, String name) {
-        this.lights = lights;
         this.doors = doors;
+        this.lights = lights;
         this.name = name;
-    }
-
-    public Collection<Light> getLights() {
-        return lights;
     }
 
     public Collection<Door> getDoors() {
         return doors;
+    }
+
+    public Collection<Light> getLights() {
+        return lights;
     }
 
     public String getName() {
@@ -26,12 +28,13 @@ public class Room extends PartofTheHouse implements ComponentOfTheCollection {
     }
 
     @Override
-    public void execute(SensorEvent event, PartofTheHouse room) {
-        for (Light light: getLights()) {
-            light.execute(event, this);
-        }
+    public void execute(Action action) {
+        action.execute(this);
         for (Door door: getDoors()) {
-            door.execute(event, this);
+            door.execute(action);
+        }
+        for (Light light: getLights()) {
+            light.execute(action);
         }
     }
 }
