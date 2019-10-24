@@ -1,6 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.AlarmSystemSecretPackage;
 
-import static ru.sbt.mipt.oop.StatesOfTheAlarmSystem.DISARMED;
+import static ru.sbt.mipt.oop.AlarmSystemSecretPackage.StatesOfTheAlarmSystem.DISARMED;
 
 public class DisarmedState extends AlarmState {
     public DisarmedState(AlarmSystemContext context) {

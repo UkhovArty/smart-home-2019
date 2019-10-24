@@ -1,8 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.AlarmSystemSecretPackage;
 
 import java.util.Scanner;
-
-import static ru.sbt.mipt.oop.StatesOfTheAlarmSystem.ALARM_IN_PROCESS;
 
 public class AlarmSystemContext {
     private String password;
@@ -10,11 +8,18 @@ public class AlarmSystemContext {
     public AlarmSystemContext(String password) {
         this.password = password;
     }
-    public void setState(AlarmState state) {
+    public void setState(StatesOfTheAlarmSystem type) {
         System.out.println("Enter a password, please");
         Scanner scanner = new Scanner(System.in);
         if (password == scanner.nextLine()) {
-            this.state = state;
+            switch (type) {
+                case ARMED:
+                    this.state = new ArmedState(this);
+                case DISARMED:
+                    this.state = new DisarmedState(this);
+                case ALARM_IN_PROCESS:
+                    this.state = new WorkingState(this);
+            }
         } else {
             this.state = new WorkingState(this);
         }
