@@ -1,14 +1,20 @@
 package ru.sbt.mipt.oop;
 
-public class Door extends Devise {
+public class Door implements Devise {
     private final String id;
     private boolean isOpen;
+    private final String type = "door";
 
-    public Door(boolean someAct, String id) {
-        super(id, someAct);
+    public Door(boolean isOpen, String id) {
+        this.isOpen = isOpen;
         this.id = id;
     }
 
+    @Override
+    public String getType() {
+        return "door";
+    }
+    @Override
     public String getId() {
         return id;
     }

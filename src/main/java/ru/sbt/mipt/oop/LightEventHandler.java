@@ -7,11 +7,11 @@ public class LightEventHandler implements EventHandler {
             if (devise.getId().equals(event.getObjectId())) {
                 switch (event.getType()) {
                     case LIGHT_ON:
-                        devise.setOn(true);
+                        ((Light) devise).setOn(true);
                         System.out.println("Light " + devise.getId() + " in room " + room.getName() + " was turned on.");
                         break;
                     case LIGHT_OFF:
-                        devise.setOn(false);
+                        ((Light) devise).setOn(false);
                         System.out.println("Light " + devise.getId() + " in room " + room.getName() + " was turned off.");
                         break;
                 }

@@ -1,11 +1,12 @@
 package ru.sbt.mipt.oop;
 
-public class Light extends Devise{
+public class Light implements Devise{
     private boolean isOn;
     private final String id;
+    private final String type = "light";
 
     public Light(String id, boolean someAct) {
-        super(id, someAct);
+        this.isOn = isOn();
         this.id = id;
     }
 
@@ -13,6 +14,11 @@ public class Light extends Devise{
         return isOn;
     }
 
+    @Override
+    public String getType() {
+        return "light";
+    }
+    @Override
     public String getId() {
         return id;
     }
