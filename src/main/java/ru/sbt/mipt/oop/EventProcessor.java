@@ -8,9 +8,9 @@ public class EventProcessor {
             System.out.println("Got event: " + event);
             for (Room room : smartHome.getRooms()) {
                 EventHandler handle = new LightEventHandler();
-                handle.handleEvent(room, event, smartHome);
-                EventHandler handle1 = new DoorEventHandler();
-                handle1.handleEvent(room, event, smartHome);
+                handle.handleEvent(event);
+                EventHandler handle1 = new DoorEventHandler(smartHome);
+                handle1.handleEvent(event);
             }
             event = NewEventGetter.getNextSensorEvent();
         }
