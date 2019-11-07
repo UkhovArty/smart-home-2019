@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Door implements Devise {
+public class Door {
     private final String id;
     private boolean isOpen;
     private final String type = "door";
@@ -10,11 +10,10 @@ public class Door implements Devise {
         this.id = id;
     }
 
-    @Override
     public String getType() {
         return "door";
     }
-    @Override
+
     public String getId() {
         return id;
     }

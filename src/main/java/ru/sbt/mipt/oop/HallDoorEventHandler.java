@@ -27,10 +27,9 @@ public class HallDoorEventHandler implements EventHandler {
     private void AllLightsSwitcher() {
         for (Room room : smartHome.getRooms()) {
             for (Light light : room.getLights()) {
-                if (light.getType().equals("light")) {
-                    light.setOn(false);
-                }
+                light.setOn(false);
             }
         }
+        System.out.println("All lights were switched off");
     }
 }

@@ -9,11 +9,12 @@ public class HomeProcessor {
 
     public void run() {
         // начинаем цикл обработки событий
-        SensorEvent event = NewEventGetter.getNextSensorEvent();
+        EventInput eventInput = new NewEventGetter();
+        SensorEvent event = eventInput.getNextSensorEvent();
         while (event != null) {
             System.out.println("Got event: " + event);
             eventProcessor.processEvent(event);
-            event = NewEventGetter.getNextSensorEvent();
+            event = eventInput.getNextSensorEvent();
         }
     }
 }
