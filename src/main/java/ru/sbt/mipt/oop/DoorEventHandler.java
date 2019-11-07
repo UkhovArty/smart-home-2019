@@ -23,6 +23,7 @@ public class DoorEventHandler implements EventHandler {
                 case DOOR_CLOSED:
                     ((Door) deviseFromEvent).setOpen(false);
                     System.out.println("Door " + deviseFromEvent.getId() +  " was closed.");
+                    break;
             }
         }
     }
