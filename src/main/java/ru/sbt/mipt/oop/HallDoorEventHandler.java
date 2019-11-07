@@ -13,8 +13,8 @@ public class HallDoorEventHandler implements EventHandler {
             return;
         } else {
             for (Room room : smartHome.getRooms()) {
-                for (Devise device : room.getDevices()) {
-                    if (device.getId().equals(event.getObjectId()) && device.getType().equals("door")) {
+                for (Door door : room.getDoors()) {
+                    if (door.getId().equals(event.getObjectId()) && door.getType().equals("door")) {
                         if (room.getName().equals("Hall")) {
                             AllLightsSwitcher();
                         }
@@ -23,11 +23,12 @@ public class HallDoorEventHandler implements EventHandler {
             }
         }
     }
+
     private void AllLightsSwitcher() {
         for (Room room : smartHome.getRooms()) {
-            for (Devise device : room.getDevices()) {
-                if (device.getType().equals("light")) {
-                    ((Light) device).setOn(false);
+            for (Light light : room.getLights()) {
+                if (light.getType().equals("light")) {
+                    light.setOn(false);
                 }
             }
         }

@@ -17,14 +17,14 @@ public class Application {
         Reader read;
         read = new ReadFromFile();
         SmartHome smartHome = read.read();
-        for (Room room: smartHome.getRooms()) {
-          System.out.println(room.getDevices());
-        }
-        //List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome),
-        //        new LightEventHandler(smartHome), new HallDoorEventHandler(smartHome));
-        //EventProcessor eventProcessor = new EventProcessor(handlers);
-        //HomeProcessor homeProcessor = new HomeProcessor(eventProcessor);
+        //for (Room room: smartHome.getRooms()) {
+          //System.out.println(room.getDevices());
+        //}
+        List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome),
+                new LightEventHandler(smartHome), new HallDoorEventHandler(smartHome));
+        EventProcessor eventProcessor = new EventProcessor(handlers);
+        HomeProcessor homeProcessor = new HomeProcessor(eventProcessor);
         //начинаем цикл обработки событий
-        //homeProcessor.run();
+        homeProcessor.run();
     }
 }

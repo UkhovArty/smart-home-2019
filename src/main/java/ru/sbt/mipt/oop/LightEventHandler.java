@@ -11,28 +11,26 @@ public class LightEventHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        Devise deviseFromEvent = getDevice(event);
-        if (deviseFromEvent == null) return;
+        Light lightFromEvent = getDevice(event);
+        if (lightFromEvent == null) return;
         switch (event.getType()) {
             case LIGHT_ON:
-                ((Light) deviseFromEvent).setOn(true);
-                System.out.println("Light " + deviseFromEvent.getId() + " was turned on.");
+                lightFromEvent.setOn(true);
+                System.out.println("Light " + lightFromEvent.getId() + " was turned on.");
                 break;
             case LIGHT_OFF:
-                ((Light) deviseFromEvent).setOn(false);
-                System.out.println("Door " + deviseFromEvent.getId() + " was closed.");
+                lightFromEvent.setOn(false);
+                System.out.println("Door " + lightFromEvent.getId() + " was closed.");
                 break;
         }
     }
 
-    private Devise getDevice(SensorEvent event) {
+    private Light getDevice(SensorEvent event) {
         for (Room room : smartHome.getRooms()) {
-            for (Devise device : room.getDevices()) {
-                if (device.getId().equals(event.getObjectId())) {
-                    if (device.getType().equals("light")) {
-                        System.out.print("room " + room.getName() + ":");
-                        return device;
-                    }
+            for (Light light : room.getLights()) {
+                if (light.getId().equals(event.getObjectId())) {
+                    System.out.print("room " + room.getName() + ":");
+                    return light;
                 }
             }
         }

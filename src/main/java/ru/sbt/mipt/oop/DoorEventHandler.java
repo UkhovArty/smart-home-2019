@@ -11,29 +11,27 @@ public class DoorEventHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        Devise deviseFromEvent = getDevice(event);
-        if (deviseFromEvent == null) return;
+        Door doorFromEvent = getDevice(event);
+        if (doorFromEvent == null) return;
         switch (event.getType()) {
             case DOOR_OPEN:
-                ((Door) deviseFromEvent).setOpen(true);
-                System.out.println("Door " + deviseFromEvent.getId() + " was opened.");
+                doorFromEvent.setOpen(true);
+                System.out.println("Door " + doorFromEvent.getId() + " was opened.");
                 break;
             case DOOR_CLOSED:
-                ((Door) deviseFromEvent).setOpen(false);
-                System.out.println("Door " + deviseFromEvent.getId() + " was closed.");
+                doorFromEvent.setOpen(false);
+                System.out.println("Door " + doorFromEvent.getId() + " was closed.");
                 break;
         }
 
     }
 
-    private Devise getDevice(SensorEvent event) {
+    private Door getDevice(SensorEvent event) {
         for (Room room : smartHome.getRooms()) {
-            for (Devise device : room.getDevices()) {
-                if (device.getId().equals(event.getObjectId())) {
-                    if (device.getType().equals("door")) {
-                        System.out.print("room " + room.getName() + ":");
-                        return device;
-                    }
+            for (Door door : room.getDoors()) {
+                if (door.getId().equals(event.getObjectId())) {
+                    System.out.print("room " + room.getName() + ":");
+                    return door;
                 }
             }
         }
