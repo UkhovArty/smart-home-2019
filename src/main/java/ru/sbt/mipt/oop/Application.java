@@ -1,22 +1,27 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.CollectionSmarthome.SmartHome;
-import ru.sbt.mipt.oop.EventProcessing.EventProcessor;
-import ru.sbt.mipt.oop.EventProcessing.NewEventGetter;
-import ru.sbt.mipt.oop.EventProcessing.SensorEvent;
-import ru.sbt.mipt.oop.Input.ReadFromFile;
-import ru.sbt.mipt.oop.Input.Reader;
+import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+
+import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class Application {
 
     public static void main(String... args) throws IOException {
         // считываем состояние дома из файла
-        Reader read = new ReadFromFile();
+        Reader read;
+        read = new ReadFromFile();
         SmartHome smartHome = read.read();
-        // начинаем цикл обработки событий
-        SensorEvent event = NewEventGetter.getNextSensorEvent(smartHome);
-        EventProcessor.eventProcessing(event, smartHome);
+        List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome),
+                new LightEventHandler(smartHome), new HallDoorEventHandler(smartHome));
+        EventProcessor eventProcessor = new EventProcessor(handlers);
+        HomeProcessor homeProcessor = new HomeProcessor(eventProcessor);
+        //начинаем цикл обработки событий
+        homeProcessor.run();
     }
 }
