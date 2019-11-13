@@ -3,14 +3,19 @@ package ru.sbt.mipt.oop;
 public class Light {
     private boolean isOn;
     private final String id;
+    private final String type = "light";
 
-    public Light(String id, boolean isOn) {
+    public Light(String id, boolean someAct) {
+        this.isOn = isOn();
         this.id = id;
-        this.isOn = isOn;
     }
 
     public boolean isOn() {
         return isOn;
+    }
+
+    public String getType() {
+        return "light";
     }
 
     public String getId() {
