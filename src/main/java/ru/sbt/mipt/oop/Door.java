@@ -6,10 +6,16 @@ public class Door implements Actionable {
     private final String id;
     private boolean isOpen;
     private final String type = "door";
+    private final String roomName;
 
-    public Door(boolean isOpen, String id) {
+    public Door(boolean isOpen, String id, String roomName) {
         this.isOpen = isOpen;
         this.id = id;
+        this.roomName = roomName;
+    }
+
+    public String getRoomName() {
+        return roomName;
     }
 
     public String getType() {
@@ -26,6 +32,6 @@ public class Door implements Actionable {
 
     @Override
     public void execute(Action action) {
-
+        action.execute(this);
     }
 }

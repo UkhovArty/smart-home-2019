@@ -16,7 +16,7 @@ public class LightEventHandler implements EventHandler {
             action = null;
         } else {
             action = o -> {
-                if (!(o instanceof Door)) {
+                if (!(o instanceof Light)) {
                     return;
                 }
                 Light light = (Light) o;
@@ -24,11 +24,11 @@ public class LightEventHandler implements EventHandler {
                     switch (event.getType()) {
                         case LIGHT_ON:
                             light.setOn(true);
-                            System.out.println("Light " + light.getId() + " in room " + " was turned on.");
+                            System.out.println("Light " + light.getId() + " in room " + light.getRoomName() + " was turned on.");
                             break;
                         case LIGHT_OFF:
                             light.setOn(false);
-                            System.out.println("Light " + light.getId() + " in room " + " was turned off");
+                            System.out.println("Light " + light.getId() + " in room " + light.getRoomName() + " was turned off");
                             break;
                     }
                 }

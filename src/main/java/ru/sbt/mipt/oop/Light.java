@@ -6,10 +6,16 @@ public class Light implements Actionable {
     private boolean isOn;
     private final String id;
     private final String type = "light";
+    private final String roomName;
 
-    public Light(String id, boolean someAct) {
+    public Light(String id, boolean someAct, String roomName) {
         this.isOn = isOn();
         this.id = id;
+        this.roomName = roomName;
+    }
+
+    public String getRoomName() {
+        return roomName;
     }
 
     public boolean isOn() {
@@ -30,6 +36,6 @@ public class Light implements Actionable {
 
     @Override
     public void execute(Action action) {
-
+        action.execute(this);
     }
 }

@@ -24,11 +24,11 @@ public class DoorEventHandler implements EventHandler {
                     switch (event.getType()) {
                         case DOOR_OPEN:
                             door.setOpen(true);
-                            System.out.println("Door " + door.getId() + " in room "  + " was opened.");
+                            System.out.println("Door " + door.getId() + " in room " + door.getRoomName() + " was opened.");
                             break;
                         case DOOR_CLOSED:
                             door.setOpen(false);
-                            System.out.println("Door " + door.getId() + " in room " + " was closed.");
+                            System.out.println("Door " + door.getId() + " in room " + door.getRoomName() + " was closed.");
                             break;
                     }
                 }
