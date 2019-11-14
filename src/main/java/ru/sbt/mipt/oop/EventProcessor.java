@@ -1,8 +1,8 @@
 package ru.sbt.mipt.oop;
 
-import java.util.List;
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
 
-import static ru.sbt.mipt.oop.SensorEventType.*;
+import java.util.List;
 
 public class EventProcessor {
     private final List<EventHandler> handlers;

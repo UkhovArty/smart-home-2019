@@ -1,6 +1,8 @@
 package ru.sbt.mipt.oop;
 
-public class Light {
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+
+public class Light implements Actionable {
     private boolean isOn;
     private final String id;
     private final String type = "light";
@@ -24,5 +26,10 @@ public class Light {
 
     public void setOn(boolean on) {
         isOn = on;
+    }
+
+    @Override
+    public void execute(Action action) {
+
     }
 }

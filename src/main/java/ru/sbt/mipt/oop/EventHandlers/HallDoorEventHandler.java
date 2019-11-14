@@ -1,4 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.EventHandlers;
+
+import ru.sbt.mipt.oop.*;
 
 public class HallDoorEventHandler implements EventHandler {
     private SmartHome smartHome;
