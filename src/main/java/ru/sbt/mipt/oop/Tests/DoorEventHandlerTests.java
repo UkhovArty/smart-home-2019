@@ -6,10 +6,8 @@ import org.junit.jupiter.api.Test;
 import ru.sbt.mipt.oop.*;
 import ru.sbt.mipt.oop.EventHandlers.DoorEventHandler;
 import ru.sbt.mipt.oop.EventHandlers.EventHandler;
-import ru.sbt.mipt.oop.EventHandlers.HallDoorEventHandler;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class DoorEventHandlerTests {
     private static EventHandler doorEventHandler;
@@ -30,7 +28,7 @@ public class DoorEventHandlerTests {
     void closeDoorAndNoLightChangesTest() {
         SensorEvent doorEvent = new SensorEvent(SensorEventType.DOOR_CLOSED, "1");
         doorEventHandler.handleEvent(doorEvent);
-        Assert.assertTrue(livingRoomLight.isOn());
+        Assert.assertTrue(livingRoomLight.isSwitchState());
         Assert.assertFalse(livingRoomDoor.isOpen());
     }
 
@@ -38,7 +36,7 @@ public class DoorEventHandlerTests {
     void notDoorEventTest() {
         SensorEvent lightEvent = new SensorEvent(SensorEventType.LIGHT_ON, "1");
         doorEventHandler.handleEvent(lightEvent);
-        Assert.assertTrue(livingRoomLight.isOn());
+        Assert.assertTrue(livingRoomLight.isSwitchState());
         Assert.assertTrue(livingRoomDoor.isOpen());
     }
 

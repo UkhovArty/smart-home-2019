@@ -1,15 +1,13 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.EventHandlers.EventHandler;
-
 public class Light implements Actionable {
-    private boolean isOn;
+    private boolean switchState;
     private final String id;
     private final String type = "light";
     private final String roomName;
 
     public Light(String id, boolean isOn, String roomName) {
-        this.isOn = isOn;
+        this.switchState = isOn;
         this.id = id;
         this.roomName = roomName;
     }
@@ -18,8 +16,8 @@ public class Light implements Actionable {
         return roomName;
     }
 
-    public boolean isOn() {
-        return isOn;
+    public boolean isSwitchState() {
+        return switchState;
     }
 
     public String getType() {
@@ -30,8 +28,8 @@ public class Light implements Actionable {
         return id;
     }
 
-    public void setOn(boolean on) {
-        isOn = on;
+    public void setSwitchState(boolean someState) {
+        this.switchState = someState;
     }
 
     @Override
