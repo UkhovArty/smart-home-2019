@@ -8,8 +8,8 @@ public class Light implements Actionable {
     private final String type = "light";
     private final String roomName;
 
-    public Light(String id, boolean someAct, String roomName) {
-        this.isOn = isOn();
+    public Light(String id, boolean isOn, String roomName) {
+        this.isOn = isOn;
         this.id = id;
         this.roomName = roomName;
     }
