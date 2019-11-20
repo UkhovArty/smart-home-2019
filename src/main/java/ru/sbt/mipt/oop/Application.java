@@ -1,27 +1,26 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.AlarmSystemSecretPackage.AlarmSystemContext;
-import ru.sbt.mipt.oop.CollectionSmarthome.SmartHome;
-import ru.sbt.mipt.oop.EventProcessing.EventProcessor;
-import ru.sbt.mipt.oop.EventProcessing.NewEventGetter;
-import ru.sbt.mipt.oop.EventProcessing.SensorEvent;
-import ru.sbt.mipt.oop.Input.ReadFromFile;
-import ru.sbt.mipt.oop.Input.Reader;
+import ru.sbt.mipt.oop.EventHandlers.DoorEventHandler;
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+import ru.sbt.mipt.oop.EventHandlers.HallDoorEventHandler;
+import ru.sbt.mipt.oop.EventHandlers.LightEventHandler;
 
 import java.io.IOException;
-
-import static ru.sbt.mipt.oop.AlarmSystemSecretPackage.StatesOfTheAlarmSystem.ARMED;
+import java.util.Arrays;
+import java.util.List;
 
 public class Application {
 
     public static void main(String... args) throws IOException {
         // считываем состояние дома из файла
-        Reader read = new ReadFromFile();
+        Reader read;
+        read = new ReadFromFile();
         SmartHome smartHome = read.read();
-        // начинаем цикл обработки событий
-        AlarmSystemContext alarmSystem = new AlarmSystemContext("12345");
-        alarmSystem.setState(ARMED);
-        SensorEvent event = NewEventGetter.getNextSensorEvent(smartHome);
-        EventProcessor.eventProcessing(event, smartHome);
+        List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome),
+                new LightEventHandler(smartHome), new HallDoorEventHandler(smartHome));
+        EventProcessor eventProcessor = new EventProcessor(handlers);
+        HomeProcessor homeProcessor = new HomeProcessor(eventProcessor);
+        //начинаем цикл обработки событий
+        homeProcessor.run();
     }
 }

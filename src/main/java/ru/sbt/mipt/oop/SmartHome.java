@@ -1,12 +1,12 @@
-package ru.sbt.mipt.oop.CollectionSmarthome;
+package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.EventProcessing.SensorEvent;
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome extends PartofTheHouse implements ComponentOfTheCollection{
-    private Collection<Room> rooms;
+public class SmartHome implements Actionable {
+    Collection<Room> rooms;
 
     public SmartHome() {
         rooms = new ArrayList<>();
@@ -25,9 +25,10 @@ public class SmartHome extends PartofTheHouse implements ComponentOfTheCollectio
     }
 
     @Override
-    public void execute(SensorEvent event, PartofTheHouse smartHome) {
+    public void execute(Action action) {
+        action.execute(this);
         for (Room room: getRooms()) {
-            room.execute(event, room);
+            room.execute(action);
         }
     }
 }
