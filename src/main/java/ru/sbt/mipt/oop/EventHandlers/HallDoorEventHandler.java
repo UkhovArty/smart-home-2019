@@ -1,4 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.EventHandlers;
+
+import ru.sbt.mipt.oop.*;
 
 public class HallDoorEventHandler implements EventHandler {
     private SmartHome smartHome;
@@ -9,18 +11,24 @@ public class HallDoorEventHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
+        Action action;
         if (!event.getType().equals(SensorEventType.DOOR_CLOSED)) {
-            return;
+            action = null;
         } else {
-            for (Room room : smartHome.getRooms()) {
-                for (Door door : room.getDoors()) {
-                    if (door.getId().equals(event.getObjectId()) && door.getType().equals("door")) {
-                        if (room.getName().equals("Hall")) {
-                            AllLightsSwitcher();
-                        }
+            action = o -> {
+                if (!(o instanceof Door)) {
+                    return;
+                }
+                Door door = (Door) o;
+                if (door.getId().equals(event.getObjectId()) && door.getType().equals("door")) {
+                    if (door.getRoomName().equals("Hall")) {
+                        AllLightsSwitcher();
                     }
                 }
-            }
+            };
+        }
+        if (action != null) {
+            smartHome.execute(action);
         }
     }
 

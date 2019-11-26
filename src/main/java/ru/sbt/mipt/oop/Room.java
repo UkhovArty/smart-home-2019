@@ -1,9 +1,10 @@
 package ru.sbt.mipt.oop;
 
-import java.util.ArrayList;
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+
 import java.util.Collection;
 
-public class Room {
+public class Room implements Actionable {
     private Collection<Door> doors;
     private Collection<Light> lights;
     private String name;
@@ -24,5 +25,16 @@ public class Room {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void execute(Action action) {
+        action.execute(this);
+        for (Door door: getDoors()) {
+            door.execute(action);
+        }
+        for (Light light: getLights()) {
+            light.execute(action);
+        }
     }
 }

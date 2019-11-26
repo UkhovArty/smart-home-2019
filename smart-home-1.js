@@ -1,81 +1,107 @@
 {
   "rooms": [
     {
-      "lights": [
-        {
-          "isOn": false,
-          "id": "1"
-        },
-        {
-          "isOn": true,
-          "id": "2"
-        }
-      ],
       "doors": [
         {
           "id": "1",
-          "isOpen": false
+          "isOpen": false,
+          "type": "door",
+          "roomName": "kitchen"
+        }
+      ],
+      "lights": [
+        {
+          "isOn": false,
+          "id": "1",
+          "type": "light",
+          "roomName": "kitchen"
+        },
+        {
+          "isOn": false,
+          "id": "2",
+          "type": "light",
+          "roomName": "kitchen"
         }
       ],
       "name": "kitchen"
     },
     {
-      "lights": [
-        {
-          "isOn": true,
-          "id": "3"
-        }
-      ],
       "doors": [
         {
           "id": "2",
-          "isOpen": false
+          "isOpen": false,
+          "type": "door",
+          "roomName": "bathroom"
+        }
+      ],
+      "lights": [
+        {
+          "isOn": false,
+          "id": "3",
+          "type": "light",
+          "roomName": "bathroom"
         }
       ],
       "name": "bathroom"
     },
     {
-      "lights": [
-        {
-          "isOn": false,
-          "id": "4"
-        },
-        {
-          "isOn": false,
-          "id": "5"
-        },
-        {
-          "isOn": false,
-          "id": "6"
-        }
-      ],
       "doors": [
         {
           "id": "3",
-          "isOpen": true
+          "isOpen": true,
+          "type": "door",
+          "roomName": "bedroom"
+        }
+      ],
+      "lights": [
+        {
+          "isOn": false,
+          "id": "4",
+          "type": "light",
+          "roomName": "bedroom"
+        },
+        {
+          "isOn": false,
+          "id": "5",
+          "type": "light",
+          "roomName": "bedroom"
+        },
+        {
+          "isOn": false,
+          "id": "6",
+          "type": "light",
+          "roomName": "bedhroom"
         }
       ],
       "name": "bedroom"
     },
     {
-      "lights": [
-        {
-          "isOn": false,
-          "id": "7"
-        },
-        {
-          "isOn": false,
-          "id": "8"
-        },
-        {
-          "isOn": false,
-          "id": "9"
-        }
-      ],
       "doors": [
         {
           "id": "4",
-          "isOpen": false
+          "isOpen": false,
+          "type": "door",
+          "roomName": "hall"
+        }
+      ],
+      "lights": [
+        {
+          "isOn": false,
+          "id": "7",
+          "type": "light",
+          "roomName": "hall"
+        },
+        {
+          "isOn": false,
+          "id": "8",
+          "type": "light",
+          "roomName": "hall"
+        },
+        {
+          "isOn": false,
+          "id": "9",
+          "type": "light",
+          "roomName": "hall"
         }
       ],
       "name": "hall"

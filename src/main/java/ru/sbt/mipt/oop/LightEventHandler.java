@@ -16,11 +16,11 @@ public class LightEventHandler implements EventHandler {
                 if (light.getId().equals(event.getObjectId())) {
                     switch (event.getType()) {
                         case LIGHT_ON:
-                            light.setOn(true);
+                            light.setSwitchState(true);
                             System.out.println("Light " + light.getId() + " in room " + room.getName() + " was turned on.");
                             break;
                         case LIGHT_OFF:
-                            light.setOn(false);
+                            light.setSwitchState(false);
                             System.out.println("Light " + light.getId() + " in room " + room.getName() +  " was turned off");
                             break;
                     }

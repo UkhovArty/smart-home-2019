@@ -1,14 +1,13 @@
 package ru.sbt.mipt.oop;
 
-import com.google.gson.Gson;
+import ru.sbt.mipt.oop.EventHandlers.DoorEventHandler;
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
+import ru.sbt.mipt.oop.EventHandlers.HallDoorEventHandler;
+import ru.sbt.mipt.oop.EventHandlers.LightEventHandler;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-
-import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class Application {
 
