@@ -1,9 +1,6 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.EventHandlers.DoorEventHandler;
-import ru.sbt.mipt.oop.EventHandlers.EventHandler;
-import ru.sbt.mipt.oop.EventHandlers.HallDoorEventHandler;
-import ru.sbt.mipt.oop.EventHandlers.LightEventHandler;
+import ru.sbt.mipt.oop.EventHandlers.*;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -16,8 +13,11 @@ public class Application {
         Reader read;
         read = new ReadFromFile();
         SmartHome smartHome = read.read();
+        for (Room room: smartHome.getRooms()) {
+            System.out.println(room.getName());
+        }
         List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome),
-                new LightEventHandler(smartHome), new HallDoorEventHandler(smartHome));
+                new LightEventHandler(smartHome), new HallDoorEventHandler(smartHome), new AlarmEventHandler(smartHome));
         EventProcessor eventProcessor = new EventProcessor(handlers);
         HomeProcessor homeProcessor = new HomeProcessor(eventProcessor);
         //начинаем цикл обработки событий

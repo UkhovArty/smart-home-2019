@@ -25,7 +25,7 @@ public class AlarmEventHandler implements EventHandler {
             action = null;
         } else {
             System.out.println("please enter alarm code");
-            Scanner scanner = new Scanner (System.in);
+            Scanner scanner = new Scanner(System.in);
             String code = scanner.nextLine();
             action = o -> {
                 if (!(o instanceof Alarm)) {
@@ -48,4 +48,3 @@ public class AlarmEventHandler implements EventHandler {
         }
     }
 }
-
