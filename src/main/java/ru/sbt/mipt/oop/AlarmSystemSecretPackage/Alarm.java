@@ -7,9 +7,9 @@ public class Alarm implements AlarmSystem, Actionable {
     private String code;
     private AlarmState state;
 
-    public Alarm(String code, AlarmState state) {
+    public Alarm(String code) {
         this.code = code;
-        this.state = state;
+        this.state = new DeactivatedState(this, code);
     }
 
     public void setState(AlarmState state) {

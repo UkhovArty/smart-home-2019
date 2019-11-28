@@ -2,6 +2,9 @@ package ru.sbt.mipt.oop;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import ru.sbt.mipt.oop.AlarmSystemSecretPackage.Alarm;
+import ru.sbt.mipt.oop.AlarmSystemSecretPackage.AlarmState;
+import ru.sbt.mipt.oop.AlarmSystemSecretPackage.DeactivatedState;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -18,8 +21,9 @@ public class HomeBuilder {
         Room bedroom = new Room(Arrays.asList(new Light("4", false,"bedroom"), new Light("5", false,"bedroom"), new Light("6", false, "bedhroom")), Arrays.asList( new Door(true, "3", "bedroom")), "bedroom");
         Room hall = new Room(Arrays.asList(new Light("7", false,"hall"), new Light("8", false, "hall"), new Light("9", false, "hall")), Arrays.asList(new Door(false, "4", "hall")),
                 "hall");
+        Alarm alarm = new Alarm("rightPassword");
 
-        SmartHome smartHome = new SmartHome(Arrays.asList(kitchen, bathroom, bedroom, hall));
+        SmartHome smartHome = new SmartHome(Arrays.asList(kitchen, bathroom, bedroom, hall), alarm);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonString = gson.toJson(smartHome);
         System.out.println(jsonString);
