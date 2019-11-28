@@ -1,5 +1,8 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
+import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
+
 public class NewEventGetter implements EventInput {
 
     @Override

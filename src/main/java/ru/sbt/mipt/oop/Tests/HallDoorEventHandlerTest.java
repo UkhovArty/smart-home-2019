@@ -6,6 +6,8 @@ import ru.sbt.mipt.oop.*;
 import ru.sbt.mipt.oop.EventHandlers.DoorEventHandler;
 import ru.sbt.mipt.oop.EventHandlers.EventHandler;
 import ru.sbt.mipt.oop.EventHandlers.HallDoorEventHandler;
+import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
+import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 
 import java.util.Arrays;
 import java.util.Collections;

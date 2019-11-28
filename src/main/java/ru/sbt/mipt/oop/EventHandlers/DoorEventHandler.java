@@ -1,6 +1,8 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
 import ru.sbt.mipt.oop.*;
+import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
+import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 
 public class DoorEventHandler implements EventHandler {
     private SmartHome smartHome;

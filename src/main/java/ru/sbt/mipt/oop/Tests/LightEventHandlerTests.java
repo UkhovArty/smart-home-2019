@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import ru.sbt.mipt.oop.*;
 import ru.sbt.mipt.oop.EventHandlers.EventHandler;
 import ru.sbt.mipt.oop.EventHandlers.LightEventHandler;
+import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
+import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 
 import java.util.Arrays;
 

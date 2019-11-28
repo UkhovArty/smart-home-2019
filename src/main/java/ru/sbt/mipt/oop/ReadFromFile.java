@@ -13,7 +13,7 @@ public class ReadFromFile implements Reader {
         Gson gson = new Gson();
         String json = null;
         try {
-            json = new String(Files.readAllBytes(Paths.get("smart-home-1.js")));
+            json = new String(Files.readAllBytes(Paths.get("output.js")));
         } catch (IOException e) {
             e.printStackTrace();
         }

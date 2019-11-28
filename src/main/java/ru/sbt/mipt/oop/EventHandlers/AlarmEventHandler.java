@@ -4,8 +4,8 @@ import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.AlarmSystemSecretPackage.ActivatedState;
 import ru.sbt.mipt.oop.AlarmSystemSecretPackage.Alarm;
 import ru.sbt.mipt.oop.AlarmSystemSecretPackage.DeactivatedState;
-import ru.sbt.mipt.oop.SensorEvent;
-import ru.sbt.mipt.oop.SensorEventType;
+import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
+import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 import ru.sbt.mipt.oop.SmartHome;
 
 import java.util.Scanner;

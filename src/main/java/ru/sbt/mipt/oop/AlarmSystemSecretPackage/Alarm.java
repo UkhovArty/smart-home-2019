@@ -1,8 +1,9 @@
 package ru.sbt.mipt.oop.AlarmSystemSecretPackage;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
+import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.Actionable;
 
-public class Alarm {
+public class Alarm implements AlarmSystem, Actionable {
     private String code;
     private AlarmState state;
 
@@ -17,5 +18,25 @@ public class Alarm {
 
     public AlarmState getState() {
         return state;
+    }
+
+    @Override
+    public void execute(Action action) {
+        action.execute(this);
+    }
+
+    @Override
+    public void activate(String code) {
+        state.activate(code);
+    }
+
+    @Override
+    public void deactivate(String code) {
+        state.deactivate(code);
+    }
+
+    @Override
+    public void makeAlarmWork() {
+        state.makeAlarmWork();
     }
 }

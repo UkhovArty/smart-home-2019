@@ -10,11 +10,11 @@ public class ActivatedState extends AlarmState {
     }
 
     @Override
-    void activate(String code) {
+    public void activate(String code) {
     }
 
     @Override
-    void deactivate(String code) {
+    public void deactivate(String code) {
         if (this.code.equals(code)) {
             alarm.setState(new DeactivatedState(alarm, code));
         } else {
@@ -23,7 +23,7 @@ public class ActivatedState extends AlarmState {
     }
 
     @Override
-    void makeAlarmWork() {
+    public void makeAlarmWork() {
         alarm.setState(new WorkingState(alarm, code));
     }
 }

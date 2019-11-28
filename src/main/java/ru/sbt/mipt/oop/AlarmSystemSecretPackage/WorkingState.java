@@ -10,15 +10,15 @@ public class WorkingState extends AlarmState {
     }
 
     @Override
-    void activate(String code) {
+    public void activate(String code) {
     }
 
     @Override
-    void deactivate(String code) {
+    public void deactivate(String code) {
 
     }
 
     @Override
-    void makeAlarmWork() {
+    public void makeAlarmWork() {
     }
 }
