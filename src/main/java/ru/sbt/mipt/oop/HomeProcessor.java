@@ -1,12 +1,13 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.EventHandlers.EventHandler;
 import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
 
 public class HomeProcessor {
-    private final EventProcessor eventProcessor;
+    private final EventHandler eventHandler;
 
-    public HomeProcessor(EventProcessor eventProcessor) {
-        this.eventProcessor = eventProcessor;
+    public HomeProcessor(EventHandler eventHandler) {
+        this.eventHandler = eventHandler;
     }
 
     public void run() {
@@ -15,7 +16,7 @@ public class HomeProcessor {
         SensorEvent event = eventInput.getNextSensorEvent();
         while (event != null) {
             System.out.println("Got event: " + event);
-            eventProcessor.processEvent(event);
+            eventHandler.handleEvent(event);
             event = eventInput.getNextSensorEvent();
         }
     }

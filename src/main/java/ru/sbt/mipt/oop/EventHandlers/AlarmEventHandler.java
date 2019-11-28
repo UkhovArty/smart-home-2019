@@ -4,6 +4,7 @@ import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.AlarmSystemSecretPackage.ActivatedState;
 import ru.sbt.mipt.oop.AlarmSystemSecretPackage.Alarm;
 import ru.sbt.mipt.oop.AlarmSystemSecretPackage.DeactivatedState;
+import ru.sbt.mipt.oop.SensorEvents.AlarmSensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 import ru.sbt.mipt.oop.SmartHome;
@@ -24,21 +25,20 @@ public class AlarmEventHandler implements EventHandler {
         if (event.getType() != SensorEventType.ALARM_ACTIVATE && event.getType() != SensorEventType.ALARM_DEACTIVATE) {
             action = null;
         } else {
-            System.out.println("please enter alarm code");
-            Scanner scanner = new Scanner(System.in);
-            String code = scanner.nextLine();
             action = o -> {
                 if (!(o instanceof Alarm)) {
                     return;
                 }
                 Alarm alarm = (Alarm) o;
-
+                AlarmSensorEvent alarmEvent = (AlarmSensorEvent) event;
                 switch (event.getType()) {
                     case ALARM_ACTIVATE:
-                        alarm.setState(new ActivatedState(alarm, code));
+                        alarm.setState(new ActivatedState(alarm, alarmEvent.getCode()));
+                        System.out.println("Alarm activated");
                         break;
                     case ALARM_DEACTIVATE:
-                        alarm.setState(new DeactivatedState(alarm, code));
+                        alarm.setState(new DeactivatedState(alarm,alarmEvent.getCode()));
+                        System.out.println("Alarm deactivated");
                         break;
                 }
             };

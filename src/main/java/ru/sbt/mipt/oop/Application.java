@@ -18,8 +18,8 @@ public class Application {
         }
         List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome),
                 new LightEventHandler(smartHome), new HallDoorEventHandler(smartHome), new AlarmEventHandler(smartHome));
-        EventProcessor eventProcessor = new EventProcessor(handlers);
-        HomeProcessor homeProcessor = new HomeProcessor(eventProcessor);
+        EventHandler homeHandler = new WorkingAlarmEventHandler(new EventProcessor(handlers),)
+        HomeProcessor homeProcessor = new HomeProcessor(homeHandler);
         //начинаем цикл обработки событий
         homeProcessor.run();
     }

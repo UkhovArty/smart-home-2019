@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import ru.sbt.mipt.oop.*;
 import ru.sbt.mipt.oop.EventHandlers.EventHandler;
 import ru.sbt.mipt.oop.EventHandlers.LightEventHandler;
+import ru.sbt.mipt.oop.SensorEvents.LightSensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 
@@ -28,7 +29,7 @@ public class LightEventHandlerTests {
 
     @Test
     void notLightEventTest() {
-        SensorEvent lightEvent = new SensorEvent(SensorEventType.DOOR_CLOSED, "3");
+        SensorEvent lightEvent = new LightSensorEvent(SensorEventType.DOOR_CLOSED, "3");
         lightEventHandler.handleEvent(lightEvent);
         Assert.assertTrue(livingRoomLight.isSwitchState());
         Assert.assertTrue(livingRoomDoor.isOpen());
@@ -36,14 +37,14 @@ public class LightEventHandlerTests {
 
     @Test
     void notRightObjectIdTest() {
-        SensorEvent lightEvent = new SensorEvent(SensorEventType.LIGHT_OFF, "2");
+        SensorEvent lightEvent = new LightSensorEvent(SensorEventType.LIGHT_OFF, "2");
         lightEventHandler.handleEvent((lightEvent));
         Assert.assertTrue(livingRoomLight.isSwitchState());
     }
 
     @Test
     void changeLightStateWithoutChangingDoorState() {
-        SensorEvent lightEvent = new SensorEvent(SensorEventType.LIGHT_OFF, "3");
+        SensorEvent lightEvent = new LightSensorEvent(SensorEventType.LIGHT_OFF, "3");
         lightEventHandler.handleEvent(lightEvent);
         Assert.assertFalse(livingRoomLight.isSwitchState());
         Assert.assertTrue(livingRoomDoor.isOpen());
