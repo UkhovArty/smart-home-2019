@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.AlarmSystemSecretPackage.ConsoleSender;
 import ru.sbt.mipt.oop.EventHandlers.*;
 
 import java.io.IOException;

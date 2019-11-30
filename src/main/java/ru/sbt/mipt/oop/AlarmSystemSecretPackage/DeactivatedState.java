@@ -1,29 +1,28 @@
 package ru.sbt.mipt.oop.AlarmSystemSecretPackage;
 
-public class DeactivatedState extends AlarmState {
+public class DeactivatedState implements AlarmSystem {
 
-    private String code;
+    private Alarm alarm;
 
-    public DeactivatedState(Alarm alarm, String code) {
-        this.code = code;
+    public DeactivatedState(Alarm alarm) {
         this.alarm = alarm;
     }
 
     @Override
     public void activate(String code) {
-        if (code.equals(this.code)) {
-            alarm.setState(new ActivatedState(alarm, code));
-        } else {
-            System.out.println("Wrong Password");
-        }
+        alarm.setCode(code);
+        alarm.setState(new ActivatedState(alarm));
+        System.out.println("Alarm activated");
     }
 
     @Override
     public void deactivate(String code) {
+
     }
 
     @Override
     public void makeAlarmWork() {
-        alarm.setState(new WorkingState(alarm, code));
+        alarm.setState(new WorkingState(alarm));
+        System.out.println("Alarm is working!");
     }
 }

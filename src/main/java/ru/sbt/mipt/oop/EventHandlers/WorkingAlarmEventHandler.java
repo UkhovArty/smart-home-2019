@@ -18,7 +18,7 @@ public class WorkingAlarmEventHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        AlarmState state = alarm.getState();
+        AlarmSystem state = alarm.getState();
         if (state instanceof WorkingState || state instanceof ActivatedState) {
             signalSender.sendSignal("Alarm is in process, all systems are blocked");
         }

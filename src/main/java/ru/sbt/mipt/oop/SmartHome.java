@@ -8,16 +8,14 @@ import java.util.Collection;
 
 public class SmartHome implements Actionable {
     Collection<Room> rooms;
-    private final Alarm alarm;
+    private final Alarm alarm = new Alarm();
 
     public SmartHome() {
         rooms = new ArrayList<>();
-        alarm = new Alarm("rightPassword");
     }
 
-    public SmartHome(Collection<Room> rooms, Alarm alarm) {
+    public SmartHome(Collection<Room> rooms) {
         this.rooms = rooms;
-        this.alarm = alarm;
     }
 
     public Alarm getAlarm() {

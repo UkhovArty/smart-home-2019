@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop.AlarmSystemSecretPackage;
+package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.SignalSendingSystem;
 

@@ -4,20 +4,23 @@ import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.Actionable;
 
 public class Alarm implements AlarmSystem, Actionable {
-    private String code;
-    private AlarmState state;
+    private String code = "";
+    private AlarmSystem state = new DeactivatedState(this);
 
-    public Alarm(String code) {
-        this.code = code;
-        this.state = new DeactivatedState(this, code);
-    }
-
-    public void setState(AlarmState state) {
+    public void setState(AlarmSystem state) {
         this.state = state;
     }
 
-    public AlarmState getState() {
+    public AlarmSystem getState() {
         return state;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
