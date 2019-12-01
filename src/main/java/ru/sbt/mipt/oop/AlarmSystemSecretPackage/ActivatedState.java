@@ -14,15 +14,18 @@ public class ActivatedState implements AlarmSystem {
 
     @Override
     public void deactivate(String code) {
-        if (alarm.getCode().equals(code)) {
+        if (alarm.checkCode(code)) {
             alarm.setState(new DeactivatedState(alarm));
+            System.out.println("Alarm system was deactivated");
         } else {
             alarm.setState(new WorkingState(alarm));
+            System.out.println("Ur code is incorrect, I am calling the police NOW!");
         }
     }
 
     @Override
     public void makeAlarmWork() {
         alarm.setState(new WorkingState(alarm));
+        System.out.println("I am calling the police NOW!");
     }
 }

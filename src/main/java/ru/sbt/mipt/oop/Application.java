@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String... args) throws IOException {
+    public static void main(String... args) {
         // считываем состояние дома из файла
         Reader read;
         read = new ReadFromFile();
@@ -16,7 +16,10 @@ public class Application {
         SignalSendingSystem sendingSystem = new ConsoleSender();
         List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome),
                 new LightEventHandler(smartHome), new HallDoorEventHandler(smartHome), new AlarmEventHandler(smartHome));
-        EventHandler homeHandler = new WorkingAlarmEventHandler(smartHome.getAlarm(), new EventProcessor(handlers),sendingSystem);
+
+        EventProcessor eventProcessor = new EventProcessor(handlers);
+        EventHandler homeHandler = new WorkingAlarmEventHandler(smartHome.alarm, eventProcessor, sendingSystem);
+
         HomeProcessor homeProcessor = new HomeProcessor(homeHandler);
         //начинаем цикл обработки событий
         homeProcessor.run();

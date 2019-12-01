@@ -33,12 +33,10 @@ public class AlarmEventHandler implements EventHandler {
                 AlarmSensorEvent alarmEvent = (AlarmSensorEvent) event;
                 switch (event.getType()) {
                     case ALARM_ACTIVATE:
-                        alarm.setState(new ActivatedState(alarm));
-                        System.out.println("Alarm activated");
+                        alarm.activate(alarmEvent.getCode());
                         break;
                     case ALARM_DEACTIVATE:
-                        alarm.setState(new DeactivatedState(alarm));
-                        System.out.println("Alarm deactivated");
+                        alarm.deactivate(alarmEvent.getCode());
                         break;
                 }
             };

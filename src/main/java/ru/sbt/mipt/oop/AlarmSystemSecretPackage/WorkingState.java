@@ -10,7 +10,7 @@ public class WorkingState implements AlarmSystem {
 
     @Override
     public void activate(String code) {
-        if (alarm.getCode().equals(code)) {
+        if (alarm.checkCode(code)) {
             alarm.setState(new ActivatedState(alarm));
             System.out.println("Alert stopped, state changed to 'Activated'");
         }
@@ -18,11 +18,10 @@ public class WorkingState implements AlarmSystem {
 
     @Override
     public void deactivate(String code) {
-        if (alarm.getCode().equals(code)) {
+        if (alarm.checkCode(code)) {
             alarm.setState(new DeactivatedState(alarm));
-            System.out.println("Alert stopped, state changed to 'Activated'");
+            System.out.println("Alert stopped, state changed to 'deactivated'");
         } else {
-            alarm.setState(new WorkingState(alarm));
             System.out.println("Ne stoilo syuda prihodit'! 'Skyrim battle music playing'");
         }
     }

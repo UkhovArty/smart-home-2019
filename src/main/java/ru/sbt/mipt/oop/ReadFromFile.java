@@ -20,7 +20,4 @@ public class ReadFromFile implements Reader {
         SmartHome smartHome = gson.fromJson(json, SmartHome.class);
         return smartHome;
     }
-
-    public ReadFromFile() throws IOException {
-    }
 }
