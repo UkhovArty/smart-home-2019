@@ -1,21 +1,32 @@
 package ru.sbt.mipt.oop.AlarmSystemSecretPackage;
 
-import ru.sbt.mipt.oop.CollectionSmarthome.Light;
-import ru.sbt.mipt.oop.CollectionSmarthome.Room;
-import ru.sbt.mipt.oop.CollectionSmarthome.SmartHome;
-import ru.sbt.mipt.oop.CommandType;
-import ru.sbt.mipt.oop.Sender;
-import ru.sbt.mipt.oop.SensorCommand;
+public class WorkingState implements AlarmSystem {
 
-import static ru.sbt.mipt.oop.AlarmSystemSecretPackage.StatesOfTheAlarmSystem.ALARM_IN_PROCESS;
-import static ru.sbt.mipt.oop.AlarmSystemSecretPackage.StatesOfTheAlarmSystem.DISARMED;
+    private Alarm alarm;
 
-public class WorkingState extends AlarmState {
+    public WorkingState (Alarm alarm) {
+        this.alarm = alarm;
+    }
 
-    public WorkingState(AlarmSystemContext context, SmartHome smartHome) {
-        super(context, smartHome);
-        this.type = ALARM_IN_PROCESS;
+    @Override
+    public void activate(String code) {
+        if (alarm.checkCode(code)) {
+            alarm.setState(new ActivatedState(alarm));
+            System.out.println("Alert stopped, state changed to 'Activated'");
+        }
+    }
 
+    @Override
+    public void deactivate(String code) {
+        if (alarm.checkCode(code)) {
+            alarm.setState(new DeactivatedState(alarm));
+            System.out.println("Alert stopped, state changed to 'deactivated'");
+        } else {
+            System.out.println("Ne stoilo syuda prihodit'! 'Skyrim battle music playing'");
+        }
+    }
+
+    @Override
+    public void makeAlarmWork() {
     }
 }
-
