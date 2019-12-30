@@ -13,6 +13,9 @@ public class HallDoorEventHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
+        if (event == null) {
+            return;
+        }
         Action action;
         if (!event.getType().equals(SensorEventType.DOOR_CLOSED)) {
             action = null;

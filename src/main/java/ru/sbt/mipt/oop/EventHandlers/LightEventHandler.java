@@ -13,6 +13,9 @@ public class LightEventHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
+        if (event == null) {
+            return;
+        }
         Action action;
         if (event.getType() != SensorEventType.LIGHT_ON && event.getType() != SensorEventType.LIGHT_OFF) {
             action = null;

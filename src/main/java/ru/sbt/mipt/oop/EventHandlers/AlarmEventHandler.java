@@ -1,15 +1,11 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
 import ru.sbt.mipt.oop.Action;
-import ru.sbt.mipt.oop.AlarmSystemSecretPackage.ActivatedState;
 import ru.sbt.mipt.oop.AlarmSystemSecretPackage.Alarm;
-import ru.sbt.mipt.oop.AlarmSystemSecretPackage.DeactivatedState;
 import ru.sbt.mipt.oop.SensorEvents.AlarmSensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 import ru.sbt.mipt.oop.SmartHome;
-
-import java.util.Scanner;
 
 public class AlarmEventHandler implements EventHandler {
 
@@ -21,6 +17,9 @@ public class AlarmEventHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
+        if (event == null) {
+            return;
+        }
         Action action;
         if (event.getType() != SensorEventType.ALARM_ACTIVATE && event.getType() != SensorEventType.ALARM_DEACTIVATE) {
             action = null;
