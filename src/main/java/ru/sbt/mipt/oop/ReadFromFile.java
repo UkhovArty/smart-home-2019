@@ -8,12 +8,19 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ReadFromFile implements Reader {
+    String fileName;
+
+    public ReadFromFile(String fileName) {
+        this.fileName = fileName;
+        read();
+    }
+
     @Override
     public SmartHome read() {
         Gson gson = new Gson();
         String json = null;
         try {
-            json = new String(Files.readAllBytes(Paths.get("output.js")));
+            json = new String(Files.readAllBytes(Paths.get(fileName)));
         } catch (IOException e) {
             e.printStackTrace();
         }

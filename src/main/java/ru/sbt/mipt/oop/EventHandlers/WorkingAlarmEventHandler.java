@@ -2,10 +2,10 @@ package ru.sbt.mipt.oop.EventHandlers;
 
 import ru.sbt.mipt.oop.AlarmSystemSecretPackage.*;
 import ru.sbt.mipt.oop.EventProcessor;
-import ru.sbt.mipt.oop.SensorEvents.AlarmSensorEvent;
-import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 import ru.sbt.mipt.oop.SignalSendingSystem;
+import ru.sbt.mipt.oop.library.CCSensorEvent;
+import ru.sbt.mipt.oop.library.EventHandler;
 
 public class WorkingAlarmEventHandler implements EventHandler {
     private final Alarm alarm;
@@ -19,17 +19,20 @@ public class WorkingAlarmEventHandler implements EventHandler {
     }
 
     @Override
-    public void handleEvent(SensorEvent event) {
+    public void handleEvent(CCSensorEvent event) {
+        if (event == null) {
+            return;
+        }
         AlarmSystem state = alarm.getState();
         if (state instanceof WorkingState) {
-            if (event.getType().equals(SensorEventType.ALARM_DEACTIVATE)) {
+            if (event.getEventType().equals(SensorEventType.ALARM_DEACTIVATE)) {
                 eventProcessor.processEvent(event);
             } else {
                 signalSender.sendSignal("Alarm is in process, all systems are blocked");
             }
         }
         if (state instanceof ActivatedState) {
-            if (event.getType().equals(SensorEventType.ALARM_DEACTIVATE)) {
+            if (event.getEventType().equals(SensorEventType.ALARM_DEACTIVATE)) {
                 eventProcessor.processEvent(event);
             } else {
                 alarm.WorkingState();

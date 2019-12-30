@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.library;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,17 +6,17 @@ import java.util.Collection;
 public class SensorEventsManager {
     private final String[] eventTypes = new String[] { "LightIsOn", "LightIsOff", "DoorIsOpen", "DoorIsClosed", "DoorIsLocked", "DoorIsUnlocked" };
 
-    private Collection<EventManager> handlers = new ArrayList<>();
+    private Collection<EventHandler> handlers = new ArrayList<>();
 
-    public void registerEventHandler(EventManager manager) {
-        this.handlers.add(manager);
+    public void registerEventHandler(EventHandler handler) {
+        this.handlers.add(handler);
     }
 
     public void start() {
         CCSensorEvent event = getNextSensorEvent();
         while (event != null) {
-            for (EventManager manager : handlers) {
-                manager.handleEvent(event);
+            for (EventHandler handler : handlers) {
+                handler.handleEvent(event);
             }
             event = getNextSensorEvent();
         }
