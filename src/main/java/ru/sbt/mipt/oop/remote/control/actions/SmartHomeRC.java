@@ -10,8 +10,8 @@ public class SmartHomeRC implements RemoteControl {
     private final Map<String, RemoteControlAction> commands = new HashMap<>();
     private String remoteControlId;
 
-    public SmartHomeRC(String remoteControlIDId) {
-        this.remoteControlId = remoteControlIDId;
+    public SmartHomeRC(String remoteControlId) {
+        this.remoteControlId = remoteControlId;
     }
 
     public void addCommand(String buttonCode, RemoteControlAction command) {
