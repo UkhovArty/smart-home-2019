@@ -1,27 +1,19 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.AlarmSystemSecretPackage.AlarmSystemContext;
-import ru.sbt.mipt.oop.CollectionSmarthome.SmartHome;
-import ru.sbt.mipt.oop.EventProcessing.EventProcessor;
-import ru.sbt.mipt.oop.EventProcessing.NewEventGetter;
-import ru.sbt.mipt.oop.EventProcessing.SensorEvent;
-import ru.sbt.mipt.oop.Input.ReadFromFile;
-import ru.sbt.mipt.oop.Input.Reader;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.sbt.mipt.oop.EventHandlers.*;
+import ru.sbt.mipt.oop.library.SensorEventsManager;
 
 import java.io.IOException;
-
-import static ru.sbt.mipt.oop.AlarmSystemSecretPackage.StatesOfTheAlarmSystem.ARMED;
+import java.util.Arrays;
+import java.util.List;
 
 public class Application {
 
-    public static void main(String... args) throws IOException {
-        // считываем состояние дома из файла
-        Reader read = new ReadFromFile();
-        SmartHome smartHome = read.read();
-        // начинаем цикл обработки событий
-        AlarmSystemContext alarmSystem = new AlarmSystemContext("12345");
-        alarmSystem.setState(ARMED);
-        SensorEvent event = NewEventGetter.getNextSensorEvent(smartHome);
-        EventProcessor.eventProcessing(event, smartHome);
+    public static void main(String... args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(SmartHomeConfiguration.class);
+        SensorEventsManager sensorEventsManager = context.getBean(SensorEventsManager.class);
+        sensorEventsManager.start();
     }
 }
