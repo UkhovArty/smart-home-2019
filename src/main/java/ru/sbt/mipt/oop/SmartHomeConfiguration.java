@@ -30,10 +30,10 @@ public class SmartHomeConfiguration {
     }
 
     @Bean
-    SensorEventsManager sensorEventsManager(List<EventHandler> handlers, Collection<EventAdapter> adapters) {
+    SensorEventsManager sensorEventsManager(List<EventHandler> handlers, EventAdapter eventAdapter) {
         SensorEventsManager sensorEventsManager = new SensorEventsManager();
         SignalSendingSystem sendingSystem = new ConsoleSender();
-        sensorEventsManager.registerEventHandler(new WorkingAlarmEventHandler(smartHome().getAlarm(), new EventProcessor(handlers, eventAdapter(adapters)), sendingSystem));
+        sensorEventsManager.registerEventHandler(new WorkingAlarmEventHandler(smartHome().getAlarm(), new EventProcessor(handlers, eventAdapter), sendingSystem));
         return sensorEventsManager;
     }
 
