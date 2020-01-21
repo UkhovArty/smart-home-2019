@@ -3,7 +3,7 @@ package ru.sbt.mipt.oop.EventAdapters;
 import ru.sbt.mipt.oop.SensorEvents.LightSensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
-import ru.sbt.mipt.oop.library.CCSensorEvent;
+import com.coolcompany.smarthome.events.CCSensorEvent;
 
 public class LightEventAdapter implements EventAdapter {
     @Override

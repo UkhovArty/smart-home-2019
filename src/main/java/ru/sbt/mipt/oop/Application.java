@@ -2,12 +2,7 @@ package ru.sbt.mipt.oop;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.sbt.mipt.oop.EventHandlers.*;
-import ru.sbt.mipt.oop.library.SensorEventsManager;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import com.coolcompany.smarthome.events.SensorEventsManager;
 
 public class Application {
 

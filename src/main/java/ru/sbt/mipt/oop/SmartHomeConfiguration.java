@@ -1,15 +1,11 @@
 package ru.sbt.mipt.oop;
 
-import com.google.gson.stream.JsonReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import ru.sbt.mipt.oop.EventAdapters.DoorEventAdapter;
-import ru.sbt.mipt.oop.EventAdapters.EventAdapter;
-import ru.sbt.mipt.oop.EventAdapters.LightEventAdapter;
-import ru.sbt.mipt.oop.EventAdapters.SensorEventAdapter;
+import ru.sbt.mipt.oop.EventAdapters.*;
 import ru.sbt.mipt.oop.EventHandlers.*;
-import ru.sbt.mipt.oop.library.SensorEventsManager;
+import com.coolcompany.smarthome.events.SensorEventsManager;
 import ru.sbt.mipt.oop.remote.control.RemoteControlConfiguration;
 
 import java.util.Collection;
@@ -33,7 +29,7 @@ public class SmartHomeConfiguration {
     SensorEventsManager sensorEventsManager(List<EventHandler> handlers, EventAdapter eventAdapter) {
         SensorEventsManager sensorEventsManager = new SensorEventsManager();
         SignalSendingSystem sendingSystem = new ConsoleSender();
-        sensorEventsManager.registerEventHandler(new WorkingAlarmEventHandler(smartHome().getAlarm(), new EventProcessor(handlers, eventAdapter), sendingSystem));
+        sensorEventsManager.registerEventHandler(new CCEventsAdapter(eventAdapter, smartHome(), handlers, sendingSystem));
         return sensorEventsManager;
     }
 

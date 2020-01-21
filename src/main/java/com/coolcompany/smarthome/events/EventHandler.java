@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop.library;
+package com.coolcompany.smarthome.events;
 
 public interface EventHandler {
 
