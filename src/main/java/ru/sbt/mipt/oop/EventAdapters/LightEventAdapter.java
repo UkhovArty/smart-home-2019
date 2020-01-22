@@ -5,9 +5,9 @@ import ru.sbt.mipt.oop.SensorEvents.SensorEvent;
 import ru.sbt.mipt.oop.SensorEvents.SensorEventType;
 import com.coolcompany.smarthome.events.CCSensorEvent;
 
-public class LightEventAdapter implements EventAdapter {
+public class LightEventAdapter implements EventConverter {
     @Override
-    public SensorEvent adaptee(CCSensorEvent event) {
+    public SensorEvent convert(CCSensorEvent event) {
         if (!(event.getEventType().equals("LightIsOn")) &&
                 !(event.getEventType().equals("LightIsOff"))) {
             return null;

@@ -5,17 +5,17 @@ import com.coolcompany.smarthome.events.CCSensorEvent;
 
 import java.util.Collection;
 
-public class SensorEventAdapter implements EventAdapter {
-    private Collection<EventAdapter> ccEventAdapters;
+public class SensorEventAdapter implements EventConverter {
+    private Collection<EventConverter> ccEventConverters;
 
-    public SensorEventAdapter(Collection<EventAdapter> ccEventAdapters) {
-        this.ccEventAdapters = ccEventAdapters;
+    public SensorEventAdapter(Collection<EventConverter> ccEventConverters) {
+        this.ccEventConverters = ccEventConverters;
     }
 
     @Override
-    public SensorEvent adaptee(CCSensorEvent event){
-        for (EventAdapter ccEventAdapter : ccEventAdapters) {
-            SensorEvent adaptedEvent = ccEventAdapter.adaptee(event);
+    public SensorEvent convert(CCSensorEvent event){
+        for (EventConverter ccEventConverter : ccEventConverters) {
+            SensorEvent adaptedEvent = ccEventConverter.convert(event);
             if (adaptedEvent != null) {
                 return adaptedEvent;
             }

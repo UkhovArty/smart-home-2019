@@ -11,23 +11,18 @@ import ru.sbt.mipt.oop.SmartHome;
 import java.util.List;
 
 public class CCEventsAdapter implements EventHandler{
-    private EventAdapter eventAdapter;
-    private SmartHome smartHome;
-    private List<ru.sbt.mipt.oop.EventHandlers.EventHandler> handlers;
-    private SignalSendingSystem sendingSystem;
+    private EventConverter eventConverter;
+    private ru.sbt.mipt.oop.EventHandlers.EventHandler workingAlarmEventHandler;
 
-    public CCEventsAdapter(EventAdapter eventAdapter, SmartHome smartHome, List<ru.sbt.mipt.oop.EventHandlers.EventHandler> handlers, SignalSendingSystem sendingSystem) {
-        this.eventAdapter = eventAdapter;
-        this.smartHome = smartHome;
-        this.handlers = handlers;
-        this.sendingSystem = sendingSystem;
+    public CCEventsAdapter(EventConverter eventConverter, WorkingAlarmEventHandler workingAlarmEventHandler) {
+        this.eventConverter = eventConverter;
+        this.workingAlarmEventHandler = workingAlarmEventHandler;
     }
 
     @Override
     public void handleEvent(CCSensorEvent event) {
         System.out.println("Got event: " + event.getEventType() + " " + event.getObjectId());
-        SensorEvent adaptedEvent = eventAdapter.adaptee(event);
-        WorkingAlarmEventHandler workingAlarmEventHandler = new WorkingAlarmEventHandler(smartHome.getAlarm(),new EventProcessor(handlers), sendingSystem);
+        SensorEvent adaptedEvent = eventConverter.convert(event);
         workingAlarmEventHandler.handleEvent(adaptedEvent);
     }
 }

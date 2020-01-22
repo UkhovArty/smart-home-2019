@@ -26,26 +26,25 @@ public class SmartHomeConfiguration {
     }
 
     @Bean
-    SensorEventsManager sensorEventsManager(List<EventHandler> handlers, EventAdapter eventAdapter) {
+    SensorEventsManager sensorEventsManager(List<EventHandler> handlers, EventConverter eventConverter) {
         SensorEventsManager sensorEventsManager = new SensorEventsManager();
-        SignalSendingSystem sendingSystem = new ConsoleSender();
-        sensorEventsManager.registerEventHandler(new CCEventsAdapter(eventAdapter, smartHome(), handlers, sendingSystem));
+        sensorEventsManager.registerEventHandler(new CCEventsAdapter(eventConverter, workingAlarmEventHandler(handlers)));
         return sensorEventsManager;
     }
 
 
     @Bean
-    EventAdapter eventAdapter(Collection<EventAdapter> adapters) {
+    EventConverter eventConverter(Collection<EventConverter> adapters) {
         return new SensorEventAdapter(adapters);
     }
 
     @Bean
-    EventAdapter doorEventAdapter() {
+    EventConverter doorEventAdapter() {
         return new DoorEventAdapter();
     }
 
     @Bean
-    EventAdapter lightEventAdapter() {
+    EventConverter lightEventAdapter() {
         return new LightEventAdapter();
     }
 
@@ -68,4 +67,10 @@ public class SmartHomeConfiguration {
     EventHandler hallDoorHandler() {
         return new HallDoorEventHandler(smartHome());
     }
+
+    @Bean
+    WorkingAlarmEventHandler workingAlarmEventHandler(List<EventHandler> handlers) {
+        return new WorkingAlarmEventHandler(smartHome().getAlarm(), new EventProcessor(handlers), new ConsoleSender());
+    }
+
 }
